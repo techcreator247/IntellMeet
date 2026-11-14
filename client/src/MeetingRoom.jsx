@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 import "./MeetingRoom.css";
 
 const SOCKET_URL = "https://intellmeet-844o.onrender.com";
+
 const ICE_SERVERS = {
   iceServers: [
     {
@@ -80,13 +81,14 @@ function MeetingRoom({ meeting, user, onLeave }) {
   useEffect(() => {
     let active = true;
     let socket;
+    let peerConfiguration = ICE_SERVERS;
 
     const createPeerConnection = (userId) => {
       if (peerConnections.current.has(userId)) {
         return peerConnections.current.get(userId);
       }
 
-      const peer = new RTCPeerConnection(ICE_SERVERS);
+      const peer = new RTCPeerConnection(peerConfiguration);
 
       const stream = localStreamRef.current;
 
@@ -181,6 +183,40 @@ function MeetingRoom({ meeting, user, onLeave }) {
     };
 
     const initializeMeeting = async () => {
+      // Load Metered TURN servers before creating peer connections
+      try {
+        const response = await fetch(
+          "https://intellmeet-webrtc.metered.live/api/v1/turn/credentials?apiKey=ed47e7d41c574933fa451fd45811e3068b34"
+        );
+
+        if (!response.ok) {
+          throw new Error(`TURN API error: ${response.status}`);
+        }
+
+        const iceServers = await response.json();
+
+        if (!Array.isArray(iceServers) || iceServers.length === 0) {
+          throw new Error("Invalid TURN server response");
+        }
+
+        peerConfiguration = { iceServers };
+
+        console.log(
+          "Metered TURN servers loaded:",
+          iceServers.length
+        );
+
+      } catch (error) {
+        console.error(
+          "TURN unavailable. Using Google STUN fallback:",
+          error
+        );
+
+        peerConfiguration = ICE_SERVERS;
+      }
+
+      if (!active) return;
+
       // STEP 1: Access camera and microphone
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
