@@ -13,16 +13,19 @@ const meetingRoutes = require("./routes/meetingRoutes");
 
 const app = express();
 const server = http.createServer(app);
-
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://localhost:5173",
+    "http://192.168.211.157:5173",
+    "https://192.168.211.157:5173",
+    process.env.CLIENT_URL
+].filter(Boolean);
 // =====================================
 // EXPRESS CORS CONFIGURATION
 // =====================================
 
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "http://192.168.211.157:5173"
-    ],
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
@@ -70,10 +73,7 @@ app.get("/api/auth/me", protect, (req, res) => {
 
 const io = new Server(server, {
     cors: {
-        origin: [
-            "http://localhost:5173",
-            "http://192.168.211.157:5173"
-        ],
+        origin: allowedOrigins,
         methods: ["GET", "POST"],
         credentials: true
     }
