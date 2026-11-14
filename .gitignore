@@ -1,0 +1,14 @@
+﻿node_modules/
+**/node_modules/
+dist/
+**/dist/
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.vscode/
+.DS_Store
+*.pem
+*.key
+*.crt
