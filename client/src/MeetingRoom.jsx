@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import "./MeetingRoom.css";
 
-const SOCKET_URL = window.location.origin;
-
+const SOCKET_URL = "https://intellmeet-844o.onrender.com";
 const ICE_SERVERS = {
   iceServers: [
     {

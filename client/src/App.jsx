@@ -4,8 +4,8 @@ import "./App.css";
 import MeetingRoom from "./MeetingRoom";
 
 // API URLS
-const API_URL = "/api/auth";
-const MEETING_API_URL = "/api/meetings";
+const API_URL = "https://intellmeet-844o.onrender.com/api/auth";
+const MEETING_API_URL = "https://intellmeet-844o.onrender.com/api/meetings";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
