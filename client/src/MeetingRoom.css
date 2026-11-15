@@ -1,10 +1,18 @@
 
+/* =====================================
+   MAIN MEETING PAGE
+===================================== */
+
 .meeting-page {
   min-height: 100vh;
   background: #0b1020;
   color: #f8fafc;
   font-family: Arial, sans-serif;
 }
+
+/* =====================================
+   MEETING HEADER
+===================================== */
 
 .meeting-header {
   min-height: 76px;
@@ -58,6 +66,10 @@
   cursor: pointer;
 }
 
+/* =====================================
+   MAIN MEETING LAYOUT
+===================================== */
+
 .meeting-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
@@ -70,6 +82,10 @@
 .video-section {
   min-width: 0;
 }
+
+/* =====================================
+   VIDEO SECTION
+===================================== */
 
 .video-topbar {
   display: flex;
@@ -166,6 +182,10 @@
   cursor: pointer;
 }
 
+/* =====================================
+   MEDIA NOTICE
+===================================== */
+
 .media-notice {
   margin-top: 18px;
   padding: 13px 16px;
@@ -176,6 +196,10 @@
   font-size: 12px;
   line-height: 1.6;
 }
+
+/* =====================================
+   MEETING CONTROLS
+===================================== */
 
 .meeting-controls {
   display: flex;
@@ -206,6 +230,10 @@
   background: #dc3545;
   border-color: #dc3545;
 }
+
+/* =====================================
+   CHAT PANEL
+===================================== */
 
 .chat-panel {
   min-height: 610px;
@@ -318,6 +346,151 @@
   cursor: not-allowed;
 }
 
+/* =====================================
+   MEETING SUMMARY
+===================================== */
+
+.meeting-summary,
+.summary-container,
+.summary-section {
+  width: 100%;
+  box-sizing: border-box;
+  color: #f8fafc;
+}
+
+/* Summary section headings */
+
+.meeting-summary h2,
+.meeting-summary h3,
+.summary-container h2,
+.summary-container h3,
+.summary-section h2,
+.summary-section h3 {
+  color: #f8fafc !important;
+  margin-bottom: 14px;
+}
+
+/* Overview and discussion cards */
+
+.summary-card,
+.summary-overview,
+.summary-content,
+.overview-card,
+.key-point-card {
+  background: #18243b !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #354563;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
+}
+
+/* Key discussion points */
+
+.key-points,
+.key-points-list {
+  padding-left: 24px;
+  margin: 12px 0;
+  color: #e2e8f0;
+}
+
+.key-points li,
+.key-points-list li {
+  color: #e2e8f0 !important;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* =====================================
+   ACTION ITEMS
+===================================== */
+
+.action-items {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 15px;
+}
+
+/* Individual action item cards */
+
+.action-item,
+.action-item-card,
+.action-card {
+  background: #202d48 !important;
+  color: #f8fafc !important;
+  border: 1px solid #465778 !important;
+  border-left: 4px solid #8b75ff !important;
+  border-radius: 12px;
+  padding: 17px 19px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* Action item text */
+
+.action-item p,
+.action-item-card p,
+.action-card p {
+  color: #f8fafc !important;
+  margin: 0 0 9px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Assigned participant */
+
+.action-item small,
+.action-item-card small,
+.action-card small,
+.action-item span,
+.action-item-card span,
+.action-card span {
+  color: #c4b5fd !important;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Summary buttons */
+
+.summary-button,
+.generate-summary-btn {
+  background: linear-gradient(135deg, #7657f5, #a855f7);
+  color: #ffffff;
+  border: none;
+  border-radius: 9px;
+  padding: 11px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.summary-button:hover,
+.generate-summary-btn:hover {
+  opacity: 0.85;
+}
+
+/* Empty summary state */
+
+.empty-summary {
+  background: #18243b;
+  border: 1px dashed #465778;
+  border-radius: 12px;
+  padding: 22px;
+  color: #aab6cc;
+  text-align: center;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
 @media (max-width: 900px) {
   .meeting-layout {
     grid-template-columns: 1fr;
@@ -348,5 +521,11 @@
 
   .room-id-button {
     width: 100%;
+  }
+
+  .action-item,
+  .action-item-card,
+  .action-card {
+    padding: 14px;
   }
 }
